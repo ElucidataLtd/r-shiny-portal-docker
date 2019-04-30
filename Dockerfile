@@ -1,5 +1,4 @@
-#FROM rocker/r-ver:latest
-FROM rocker/tidyverse
+FROM rocker/tidyverse:3.5.3
 
 #install other packages
 RUN Rscript -e "install.packages(c('shinydashboard', 'shiny','dashboardthemes'))"
