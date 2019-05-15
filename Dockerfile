@@ -7,4 +7,3 @@ RUN install2.r bit64 data.table DiagrammeR DT futile.logger future ggplot2 glue 
 RUN Rscript -e "devtools::install_github('nik01010/dashboardthemes')"
 RUN Rscript -e "devtools::install_github('timelyportfolio/reactR')"
 RUN Rscript -e "devtools::install_github('hrbrmstr/udpprobe')"
-
