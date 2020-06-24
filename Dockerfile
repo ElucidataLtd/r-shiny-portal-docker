@@ -8,7 +8,7 @@ ENV MRAN=https://mran.microsoft.com/snapshot/$MRAN_REPO_DATE \
 ###### ------- Alpine Packages ----------- #####
 
 # Baseline packages for R and building R/Rcpp packages
-ENV BASELINE_PKGS="cmake gcc g++ git R R-doc R-dev autoconf"
+ENV BASELINE_PKGS="cmake gcc g++ git R R-doc R-dev autoconf tzdata gnu-libiconv"
 RUN apk update \
   && apk --no-cache add $BASELINE_PKGS
 
@@ -54,4 +54,4 @@ RUN R -e 'install.packages(c("shiny"))'
 
 # Packages for MI Portal
 RUN Rscript -e "devtools::install_github('ElucidataLtd/dashboardthemes')"
-RUN R -e 'install.packages(c("data.table", "DT", "futile.logger", "future", "ggplot2", "glue", "openxlsx", "pool", "promises", "rjson", "RPostgres", "shinyBS", "shinydashboard", "shinyjqui", "shinyjs", "shinyWidgets", "testthat", "yaml", "XML"))'
+RUN R -e 'install.packages(c("AzureAuth", "data.table", "DT", "futile.logger", "future", "ggplot2", "glue", "openxlsx", "pool", "promises", "rjson", "RPostgres", "shinyBS", "shinydashboard", "shinyjqui", "shinyjs", "shinyWidgets", "testthat", "yaml", "XML"))'
