@@ -1,8 +1,6 @@
 FROM alpine:3.12.0
 ENV MRAN_REPO_DATE=2020-06-01
 ENV MRAN=https://mran.microsoft.com/snapshot/$MRAN_REPO_DATE \
-    LC_ALL=en_US.UTF-8 \
-    LANG=en_US.UTF-8 \
     TERM=xterm
 
 ###### ------- Alpine Packages ----------- #####
