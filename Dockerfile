@@ -23,7 +23,7 @@ RUN apk update
 RUN apk add automake==1.16.1-r0
 
 # Extra apk packages that are probably useful to service R packages
-ENV RVER_PKGS="bash-completion ca-certificates file gfortran ghostscript-fonts libbz2 libcurl icu-libs libjpeg-turbo libjpeg-turbo-dev openblas-dev pango pcre-dev libpng libpng-dev readline tiff tiff-dev xz-libs unzip zip zlib coreutils"
+ENV RVER_PKGS="bash-completion ca-certificates file gfortran ghostscript-fonts libbz2 libcurl icu-libs libjpeg-turbo libjpeg-turbo-dev openblas-dev pango pcre-dev libpng libpng-dev readline tiff tiff-dev xz-libs unzip zip zlib coreutils fontconfig ttf-liberation"
 ENV TIDYVERSE_PKGS="libxml2-dev cairo cairo-dev sqlite-dev mariadb-dev mariadb-client postgresql-dev libssh2 libssh2-dev libgit2 libgit2-dev unixodbc-dev libsasl"
 
 RUN apk --no-cache add $RVER_PKGS
