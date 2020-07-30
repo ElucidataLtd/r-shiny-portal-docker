@@ -29,6 +29,6 @@ RUN Rscript -e "devtools::install_github('ElucidataLtd/dashboardthemes')"
 RUN Rscript -e "devtools::install_github('Azure/AzureAuth', ref = '34c59d3407caf730cc58158ae7e76b422c3a8884')"
 
 # Install saas (not available on MRAN at snapshot date)
-RUN Rscript -e "remotes::install_github('rstudio/sass@0.2.0')"
+RUN Rscript -e "remotes::install_github('rstudio/sass@v0.2.0')"
 
 CMD ["R"]
