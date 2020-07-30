@@ -1,4 +1,4 @@
-FROM grahamrp/shiny-portal
+FROM elucidataltd/tidyverse-plus
 
 # Install portal-specific packages
 
