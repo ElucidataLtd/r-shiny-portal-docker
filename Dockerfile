@@ -22,7 +22,7 @@ RUN install2.r --error \
   yaml \
   XML
 
-
+# Install dashboard themese (remove after portal v2.5)
 RUN Rscript -e "devtools::install_github('ElucidataLtd/dashboardthemes')"
 
 # Install AzureAuth 1.2.4
