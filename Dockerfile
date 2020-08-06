@@ -205,5 +205,6 @@ RUN apt-get update \
 
 # Install AzureAuth 1.2.4
 RUN Rscript -e "devtools::install_github('Azure/AzureAuth', ref = '34c59d3407caf730cc58158ae7e76b422c3a8884')"
+RUN Rscript -e "install.packages('r2d3')"
 
 CMD ["R"]
