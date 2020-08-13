@@ -1,4 +1,4 @@
-FROM debian:buster
+FROM debian:buster-slim
 
 # Set MRAN snapshot date. 2019-04-26 is the date associated with r-ver 3.5.3.
 ENV BUILD_DATE=2019-04-26
