@@ -8,6 +8,8 @@ ENV R_VERSION=3.5.3 \
   LANG=en_US.UTF-8 \
   TERM=xterm
 
+# Add man folder because slim excludes it, but default-jdk requires it
+RUN mkdir /usr/share/man/man1/
 
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
