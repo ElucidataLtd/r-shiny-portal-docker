@@ -1,16 +1,25 @@
-FROM debian:buster
+FROM ubuntu:20.04
+RUN apt update && apt upgrade -y
+# Set locale
+RUN echo "LC_ALL=en_US.UTF-8" >> /etc/environment
+RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
+RUN echo "LANG=en_US.UTF-8" > /etc/locale.conf
 
 # Set MRAN snapshot date. 2019-04-26 is the date associated with r-ver 3.5.3.
 ENV BUILD_DATE=2019-04-26
 ENV R_VERSION=3.5.3 \
-  CRAN=https://cran.rstudio.com \ 
+  CRAN=https://cran.rstudio.com \
   LC_ALL=en_US.UTF-8 \
   LANG=en_US.UTF-8 \
   TERM=xterm
 
+RUN export DEBIAN_FRONTEND=noninteractive
+ENV TZ=Europe/London
+RUN apt install -y tzdata
 
-RUN apt-get update \
-  && apt-get install -y --no-install-recommends \
+RUN apt update \
+  && apt install -y --no-install-recommends \
+  bash-completion \
   ca-certificates \
   file \
   fonts-texgyre \
@@ -20,13 +29,11 @@ RUN apt-get update \
   libblas-dev \
   libbz2-1.0 \
   libcurl4 \
-  libicu63 \
-  libjpeg62-turbo \
   libopenblas-dev \
   libpangocairo-1.0-0 \
   libpcre3 \
   libpng16-16 \
-  libreadline7 \
+  libreadline8 \
   libtiff5 \
   liblzma5 \
   locales \
@@ -34,9 +41,6 @@ RUN apt-get update \
   unzip \
   zip \
   zlib1g \
-  && echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
-  && locale-gen en_US.utf8 \
-  && /usr/sbin/update-locale LANG=en_US.UTF-8 \
   && BUILDDEPS="curl \
   default-jdk \
   libbz2-dev \
@@ -55,17 +59,12 @@ RUN apt-get update \
   perl \
   tcl8.6-dev \
   tk8.6-dev \
-  texinfo \
-  texlive-extra-utils \
-  texlive-fonts-recommended \
-  texlive-fonts-extra \
-  texlive-latex-recommended \
   x11proto-core-dev \
   xauth \
   xfonts-base \
   xvfb \
   zlib1g-dev" \
-  && apt-get install -y --no-install-recommends $BUILDDEPS \
+  && apt install -y --no-install-recommends $BUILDDEPS \
   && cd tmp/ \
   ## Download source code
   && curl -O https://cran.r-project.org/src/base/R-3/R-${R_VERSION}.tar.gz \
@@ -117,9 +116,9 @@ RUN apt-get update \
   ## Clean up from R source install
   && cd / \
   && rm -rf /tmp/* \
-  && apt-get remove --purge -y $BUILDDEPS \
-  && apt-get autoremove -y \
-  && apt-get autoclean -y \
+  && apt remove --purge -y $BUILDDEPS \
+  && apt autoremove -y \
+  && apt autoclean -y \
   && rm -rf /var/lib/apt/lists/*
 
 
@@ -132,7 +131,7 @@ RUN apt-get update \
 
 ENV PKG_DEPS="file \
   libapparmor1 \
-  multiarch-support \
+  binutils-multiarch \
   libcurl4 \
   libedit2 \
   libssl1.1 \
@@ -144,7 +143,6 @@ ENV PKG_DEPS="file \
   libssh2-1 \
   unixodbc \
   libsasl2-2 \
-  libjpeg62-turbo \
   libnode64 \
   libxt6"
 
@@ -162,14 +160,13 @@ ENV PKG_BUILD_DEPS="file \
   libssh2-1-dev \
   unixodbc-dev \
   libsasl2-dev \
-  libjpeg62-turbo-dev \
   libnode-dev \
   libxt-dev"
 
 
-RUN apt-get update \
-  && apt-get install -y --no-install-recommends $PKG_DEPS\
-  && apt-get install -y --no-install-recommends $PKG_BUILD_DEPS \
+RUN apt update \
+  && apt install -y --no-install-recommends $PKG_DEPS\
+  && apt install -y --no-install-recommends $PKG_BUILD_DEPS \
   && install2.r --error \
   --deps TRUE \
   tidyverse \
@@ -191,16 +188,15 @@ RUN apt-get update \
   rjson \
   RPostgres \
   shiny \
-  shinyBS \
   shinydashboard \
   shinyjqui \
   shinyjs \
   shinyWidgets \
   yaml \
   XML \
-  && apt-get remove --purge -y $PKG_BUILD_DEPS \
-  && apt-get autoremove -y \
-  && apt-get autoclean -y \
+  && apt remove --purge -y $PKG_BUILD_DEPS \
+  && apt autoremove -y \
+  && apt autoclean -y \
   && rm -rf /var/lib/apt/lists/*
 
 # Install AzureAuth 1.2.4
