@@ -38,6 +38,8 @@ RUN apt update \
   libreadline8 \
   libtiff5 \
   liblzma5 \
+  javascript-common \
+  libjs-jquery \
   locales \
   make \
   unzip \
