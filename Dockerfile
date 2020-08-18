@@ -5,6 +5,8 @@ RUN echo "LC_ALL=en_US.UTF-8" >> /etc/environment
 RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
 RUN echo "LANG=en_US.UTF-8" > /etc/locale.conf
 
+RUN apt install -y apt-utils
+
 # Set MRAN snapshot date. 2019-04-26 is the date associated with r-ver 3.5.3.
 ENV BUILD_DATE=2019-04-26
 ENV R_VERSION=3.5.3 \
@@ -13,7 +15,7 @@ ENV R_VERSION=3.5.3 \
   LANG=en_US.UTF-8 \
   TERM=xterm
 
-RUN export DEBIAN_FRONTEND=noninteractive
+ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=Europe/London
 RUN apt install -y tzdata
 
