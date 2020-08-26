@@ -196,8 +196,8 @@ RUN apt update \
   && apt remove --purge -y $PKG_BUILD_DEPS \
   && apt autoremove -y \
   && apt autoclean -y \
-  && rm -rf /var/lib/apt/lists/* \\
-  && rm /tmp/downloaded_packages/*
+  && rm -rf /var/lib/apt/lists/* \
+  && rm -rf /tmp/downloaded_packages/*
 
 # Install AzureAuth 1.2.4
 RUN Rscript -e "devtools::install_github('Azure/AzureAuth', ref = '34c59d3407caf730cc58158ae7e76b422c3a8884')"
