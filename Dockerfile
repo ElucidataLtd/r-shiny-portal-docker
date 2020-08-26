@@ -1,11 +1,12 @@
 FROM ubuntu:20.04
-RUN apt update && apt upgrade -y
+RUN apt update \
+  && apt upgrade -y \
+  && apt install -y apt-utils
+
 # Set locale
 RUN echo "LC_ALL=en_US.UTF-8" >> /etc/environment
 RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
 RUN echo "LANG=en_US.UTF-8" > /etc/locale.conf
-
-RUN apt install -y apt-utils
 
 # Set MRAN snapshot date. 2019-04-26 is the date associated with r-ver 3.5.3.
 ENV BUILD_DATE=2019-04-26
@@ -38,8 +39,6 @@ RUN apt update \
   libreadline8 \
   libtiff5 \
   liblzma5 \
-  javascript-common \
-  libjs-jquery \
   locales \
   make \
   unzip \
@@ -133,11 +132,8 @@ RUN apt update \
 # R package has been compiled. The *package deps* however, need to remain on the system
 # to be used by the R packages at runtime.
 
-ENV PKG_DEPS="file \
-  libapparmor1 \
+ENV PKG_DEPS="libapparmor1 \
   binutils-multiarch \
-  libcurl4 \
-  libedit2 \
   libssl1.1 \
   libxml2 \
   libcairo2 \
@@ -150,10 +146,8 @@ ENV PKG_DEPS="file \
   libnode64 \
   libxt6"
 
-ENV PKG_BUILD_DEPS="file \
-  libclang-dev \
+ENV PKG_BUILD_DEPS="libclang-dev \
   libcurl4-openssl-dev \
-  libedit2 \
   libssl-dev \
   libxml2-dev \
   libcairo2-dev \
@@ -189,6 +183,7 @@ RUN apt update \
   openxlsx \
   pool \
   promises \
+  r2d3 \
   rjson \
   RPostgres \
   shiny \
@@ -201,10 +196,10 @@ RUN apt update \
   && apt remove --purge -y $PKG_BUILD_DEPS \
   && apt autoremove -y \
   && apt autoclean -y \
-  && rm -rf /var/lib/apt/lists/*
+  && rm -rf /var/lib/apt/lists/* \
+  && rm -rf /tmp/downloaded_packages/*
 
 # Install AzureAuth 1.2.4
 RUN Rscript -e "devtools::install_github('Azure/AzureAuth', ref = '34c59d3407caf730cc58158ae7e76b422c3a8884')"
-RUN Rscript -e "install.packages('r2d3')"
 
 CMD ["R"]
