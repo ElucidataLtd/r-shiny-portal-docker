@@ -164,42 +164,18 @@ ENV PKG_BUILD_DEPS="libclang-dev \
 
 RUN apt update \
   && apt install -y --no-install-recommends $PKG_DEPS\
-  && apt install -y --no-install-recommends $PKG_BUILD_DEPS \
-  && install2.r --error \
-  --deps TRUE \
-  tidyverse \
-  glue \
-  testthat \
-  devtools \
-  formatR \
-  remotes \
-  selectr \
-  # portal-specific  
-  data.table \
-  DT \
-  htmltools \
-  futile.logger \
-  future \
-  openxlsx \
-  pool \
-  promises \
-  r2d3 \
-  rjson \
-  RPostgres \
-  shiny \
-  shinydashboard \
-  shinyjqui \
-  shinyjs \
-  shinyWidgets \
-  yaml \
-  XML \
-  && apt remove --purge -y $PKG_BUILD_DEPS \
+  && apt install -y --no-install-recommends $PKG_BUILD_DEPS 
+
+ENV RENV_VERSION 0.11.0-27
+RUN R -e "install.packages('remotes', repos = c(CRAN = 'https://cloud.r-project.org'))"
+RUN R -e "remotes::install_github('rstudio/renv@${RENV_VERSION}')"
+
+COPY renv.lock renv.lock
+RUN R -e 'renv::restore()'
+
+RUN apt remove --purge -y $PKG_BUILD_DEPS \
   && apt autoremove -y \
   && apt autoclean -y \
-  && rm -rf /var/lib/apt/lists/* \
-  && rm -rf /tmp/downloaded_packages/*
-
-# Install AzureAuth 1.2.4
-RUN Rscript -e "devtools::install_github('Azure/AzureAuth', ref = '34c59d3407caf730cc58158ae7e76b422c3a8884')"
+  && rm -rf /var/lib/apt/lists/* 
 
 CMD ["R"]
