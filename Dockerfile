@@ -161,19 +161,16 @@ ENV PKG_BUILD_DEPS="libclang-dev \
   libnode-dev \
   libxt-dev"
 
+ENV RENV_VERSION 0.11.0-27
+COPY renv.lock renv.lock
 
 RUN apt update \
   && apt install -y --no-install-recommends $PKG_DEPS\
-  && apt install -y --no-install-recommends $PKG_BUILD_DEPS 
-
-ENV RENV_VERSION 0.11.0-27
-RUN R -e "install.packages('remotes', repos = c(CRAN = 'https://cloud.r-project.org'))"
-RUN R -e "remotes::install_github('rstudio/renv@${RENV_VERSION}')"
-
-COPY renv.lock renv.lock
-RUN R -e 'renv::restore()'
-
-RUN apt remove --purge -y $PKG_BUILD_DEPS \
+  && apt install -y --no-install-recommends $PKG_BUILD_DEPS\
+  && R -e "install.packages('remotes', repos = c(CRAN = 'https://cloud.r-project.org'))"\
+  && R -e "remotes::install_github('rstudio/renv@${RENV_VERSION}')"\
+  && R -e 'renv::restore()'\
+  && apt remove --purge -y $PKG_BUILD_DEPS \
   && apt autoremove -y \
   && apt autoclean -y \
   && rm -rf /var/lib/apt/lists/* 
