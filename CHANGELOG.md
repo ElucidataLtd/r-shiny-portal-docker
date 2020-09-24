@@ -23,6 +23,31 @@ Breaking changes should be marked as "BREAKING" before the tickets:
 
 ## [Unreleased]
 
+## [1.4.5] - 2020-09-11
+### Changed
+* Reduce the number of stages building stage to reduce the size of the image.
+
+## [1.4.4] - 2020-09-10
+### Changed
+* The base image now uses renv and a renv.lock file to install R packages.
+
+## [1.4.3] - 2020-08-26
+### Changed
+* Update libraries and remove tar.gz from the R packages installation in /tmp.
+
+## [1.4.2] - 2020-08-18
+### Changed
+* Force the update of javascript.
+
+## [1.4.1] - 2020-08-18
+### Changed
+* Warnings present during the build were removed.
+
+## [1.4.0] - 2020-08-17
+### Changed
+* No longer require elucidataltc/tidyverse-plus and change to Ubuntu 20.04 as
+  base image.
+
 ## [1.2.0] - 2020-07-30
 ### Changed 
 * Functionality is now split across two Dockerfiles,
