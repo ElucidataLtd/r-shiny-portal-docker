@@ -1,5 +1,8 @@
 # r-shiny-portal-docker
+## monolith branch
 
-Docker image capable of running the shiny portal.
+The `monolith` branch holds the Dockerfile used briefly for the MI Portal (v2.6.0 and v2.6.1) based on debian:buster,
+but was retired because using ubuntu as a base image was found to reduce the number of reported security issues significantly.
 
-Packages needed in addition to the "tidyverse-plus" parent image should be added here.
+The branch is retained for reference.
+
