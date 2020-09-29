@@ -4,7 +4,7 @@
     "Repositories": [
       {
         "Name": "CRAN",
-        "URL": "https://mran.revolutionanalytics.com/snapshot/2019-04-26"
+        "URL": "https://cran.r-project.org"
       }
     ]
   },
@@ -436,10 +436,10 @@
     },
     "httr": {
       "Package": "httr",
-      "Version": "1.4.0",
+      "Version": "1.4.2",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "194b9f75755db776bc5a34ee8b95fe7e"
+      "Hash": "a525aba14184fec243f9eaec62fbed43"
     },
     "ini": {
       "Package": "ini",
@@ -764,9 +764,9 @@
       "RemoteHost": "api.github.com",
       "RemoteRepo": "renv",
       "RemoteUsername": "rstudio",
-      "RemoteRef": "master",
+      "RemoteRef": "0.11.0-27",
       "RemoteSha": "4dff2ebf429472cbdbd5ac6752154ff030c8467c",
-      "Hash": "0a6fea70be468bafe9db8631426835d0"
+      "Hash": "1a539fec6eb5ecdb1bb90dd42dd7421b"
     },
     "reprex": {
       "Package": "reprex",
@@ -1043,10 +1043,10 @@
     },
     "zip": {
       "Package": "zip",
-      "Version": "2.0.1",
+      "Version": "2.1.1",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "1a118adfd674545aeb2980a4b886b13b"
+      "Hash": "3bc8405c637d988801ec5ea88372d0c2"
     }
   }
 }

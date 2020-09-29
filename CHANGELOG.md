@@ -22,6 +22,9 @@ Breaking changes should be marked as "BREAKING" before the tickets:
 ```
 
 ## [Unreleased]
+### Changed
+* NMIS-1108 - The repository was changed to CRAN and packages httr and zip were
+  updated.
 
 ## [1.4.5] - 2020-09-11
 ### Changed
