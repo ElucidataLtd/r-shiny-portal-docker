@@ -875,10 +875,10 @@
     },
     "shinyjs": {
       "Package": "shinyjs",
-      "Version": "1.0",
+      "Version": "2.0.0",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "7b54dd72674b2a3793cb364c20cba41e"
+      "Hash": "9ddfc91d4280eaa34c2103951538976f"
     },
     "shinytest": {
       "Package": "shinytest",
