@@ -23,6 +23,12 @@ Breaking changes should be marked as "BREAKING" before the tickets:
 
 ## [Unreleased]
 
+## [1.4.6] - 2020-10-01
+### Changed
+* NMIS-1108 - The repository was changed to CRAN and packages httr and zip were
+  updated.
+* NMIS-1105 - Shinyjs was updated to version 2.0.0 for license purposes.
+
 ## [1.4.5] - 2020-09-11
 ### Changed
 * Reduce the number of stages building stage to reduce the size of the image.
