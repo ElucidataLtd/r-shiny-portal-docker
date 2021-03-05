@@ -23,6 +23,10 @@ Breaking changes should be marked as "BREAKING" before the tickets:
 
 ## [Unreleased]
 
+## [1.4.7] - 2021-03-05
+### Changed
+* NMIS-1226 - The package shinyalert has been added to support ticket NMIS-1217.
+
 ## [1.4.6] - 2020-10-01
 ### Changed
 * NMIS-1108 - The repository was changed to CRAN and packages httr and zip were
